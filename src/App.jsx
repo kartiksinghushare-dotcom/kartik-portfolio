@@ -649,7 +649,7 @@ export default function DigitalCV() {
               ].map((c, i) => (
                 <div className="contact-row" key={i}>
                   <div className="contact-icon">{c.icon}</div>
-                  <div style={{flex: 1}}>
+                  <div className="contact-info">
                     <div className="contact-label">{c.label}</div>
                     <div className="contact-value">
                       {c.href ? <a href={c.href} target="_blank" rel="noopener noreferrer">{c.value}</a> : c.value}
@@ -988,7 +988,8 @@ export default function DigitalCV() {
     .hobby-icon-wrap::before{content:'';position:absolute;inset:0;background:var(--accent-gradient);opacity:0;transition:opacity .4s}
     .hobby-icon-wrap.active{transform:scale(1.2) rotate(10deg);box-shadow:0 8px 24px var(--glow)}
     .hobby-icon-wrap.active::before{opacity:.2}
-    .hobby-title{font-size:16px;font-weight:600;margin-bottom:8px;transition:all .3s}
+    .hobby-title{font-size:16px;font-weight:600;margin-bottom:8px;transition:all .3s;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto}
+    @media(max-width:600px){.hobby-title{font-size:15px}}
     .hobby-card:hover .hobby-title{background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .hobby-desc{font-size:13.5px;color:var(--muted);max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0;line-height:1.65}
     .hobby-desc.visible{max-height:150px;opacity:1}
@@ -997,18 +998,22 @@ export default function DigitalCV() {
     .contact-intro{font-size:14.5px;color:var(--muted);margin-bottom:30px;line-height:1.8;animation:fadeUp .6s .2s ease both}
     .contact-card{background:var(--card);box-shadow:var(--shadow);border-radius:24px;padding:10px 0;animation:fadeUp .6s .3s ease both;border:1px solid transparent;transition:all .4s}
     .contact-card:hover{box-shadow:var(--shadow-hover);border-color:var(--glow)}
-    .contact-row{display:flex;align-items:center;gap:20px;padding:20px 28px;border-bottom:1px solid var(--nav-border);transition:all .3s cubic-bezier(.4,0,.2,1);position:relative}
+    .contact-row{display:flex;align-items:center;gap:20px;padding:20px 28px;border-bottom:1px solid var(--nav-border);transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;flex-wrap:wrap}
+    @media(max-width:600px){.contact-row{padding:16px 20px;gap:12px}}
     .contact-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--accent-gradient);transition:width .3s}
     .contact-row:hover::before{width:4px}
     .contact-row:last-child{border-bottom:none}
     .contact-row:hover{background:var(--hover-card);transform:translateX(6px)}
     .contact-icon{font-size:22px;width:40px;text-align:center;flex-shrink:0;transition:transform .3s}
     .contact-row:hover .contact-icon{transform:scale(1.2) rotate(5deg)}
+    .contact-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
     .contact-label{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted2)}
-    .contact-value{font-size:14.5px;font-weight:500;margin-top:3px}
+    .contact-value{font-size:14.5px;font-weight:500;word-break:break-all;overflow-wrap:break-word}
+    @media(max-width:600px){.contact-value{font-size:13px}}
     .contact-value a{color:inherit;text-decoration:none;transition:all .3s}
     .contact-value a:hover{background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .copy-email-btn{background:var(--tag-bg);border:1px solid var(--nav-border);padding:8px 16px;border-radius:50px;font-size:12px;cursor:pointer;transition:all .3s;color:var(--accent);font-family:'DM Sans',sans-serif;font-weight:500;white-space:nowrap}
+    .copy-email-btn{background:var(--tag-bg);border:1px solid var(--nav-border);padding:8px 16px;border-radius:50px;font-size:12px;cursor:pointer;transition:all .3s;color:var(--accent);font-family:'DM Sans',sans-serif;font-weight:500;white-space:nowrap;flex-shrink:0}
+    @media(max-width:600px){.copy-email-btn{font-size:11px;padding:6px 12px}}
     .copy-email-btn:hover{background:var(--accent-gradient);color:#fff;border-color:transparent;transform:scale(1.05);box-shadow:0 2px 8px var(--glow)}
     .resume-download-section{margin-top:32px;animation:fadeUp .6s .4s ease both}
     .download-resume-btn{width:100%;background:var(--accent-gradient);color:#fff;border:none;border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 16px var(--glow);position:relative;overflow:hidden}
