@@ -406,6 +406,31 @@ export default function DigitalCV() {
                 <p>With a background spanning warehouse operations, supply chain supervision, and business systems analysis, I bring a rare combination of hands-on experience and strategic thinking to every challenge.</p>
                 <p>My approach is rooted in curiosity: understanding why things work (or don't), then rebuilding them in ways that scale. Whether it's automating a workflow, launching a warehouse, or aligning a cross-functional team — I focus on measurable outcomes.</p>
               </div>
+              
+              <div className="personal-details">
+                <div className="detail-item">
+                  <span className="detail-icon">🇮🇳</span>
+                  <div className="detail-content">
+                    <div className="detail-label">Nationality</div>
+                    <div className="detail-value">Indian</div>
+                  </div>
+                </div>
+                <div className="detail-item">
+                  <span className="detail-icon">🎂</span>
+                  <div className="detail-content">
+                    <div className="detail-label">Age</div>
+                    <div className="detail-value">25</div>
+                  </div>
+                </div>
+                <div className="detail-item">
+                  <span className="detail-icon">📍</span>
+                  <div className="detail-content">
+                    <div className="detail-label">Based in</div>
+                    <div className="detail-value">UAE</div>
+                  </div>
+                </div>
+              </div>
+
               <div className="about-tags">
                 {["Systems Thinker", "Operations", "Automation", "Data-Driven", "Cross-functional", "Scalability", "Lean Six Sigma"].map(t => (
                   <span className="about-tag" key={t}>{t}</span>
@@ -810,6 +835,15 @@ export default function DigitalCV() {
     .about-body{font-size:16px;line-height:1.9;color:var(--muted);animation:fadeUp .6s .2s ease both}
     @media(max-width:600px){.about-body{font-size:14px;line-height:1.8}}
     .about-body p+p{margin-top:18px}
+    .personal-details{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;animation:fadeUp .6s .25s ease both}
+    @media(max-width:600px){.personal-details{grid-template-columns:1fr;gap:12px}}
+    .detail-item{background:var(--card);border:1px solid var(--nav-border);border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;transition:all .3s cubic-bezier(.4,0,.2,1);cursor:default}
+    .detail-item:hover{transform:translateY(-3px);border-color:var(--glow);box-shadow:var(--shadow)}
+    .detail-icon{font-size:28px;flex-shrink:0;transition:transform .3s}
+    .detail-item:hover .detail-icon{transform:scale(1.15) rotate(5deg)}
+    .detail-content{flex:1}
+    .detail-label{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted2);margin-bottom:4px}
+    .detail-value{font-size:15px;font-weight:600;color:var(--accent)}
     .about-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;animation:fadeUp .6s .3s ease both}
     .about-tag{background:var(--tag-bg);font-size:13px;padding:8px 18px;border-radius:50px;color:var(--accent);font-weight:500;transition:all .3s cubic-bezier(.4,0,.2,1);border:1px solid transparent;position:relative;overflow:hidden}
     .about-tag::before{content:'';position:absolute;inset:0;background:var(--accent-gradient);opacity:0;transition:opacity .3s;z-index:-1}
@@ -1007,4 +1041,3 @@ export default function DigitalCV() {
     </>
   );
 }
-
