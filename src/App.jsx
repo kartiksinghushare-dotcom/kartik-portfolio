@@ -973,16 +973,16 @@ export default function DigitalCV() {
     .skill-tag:hover{background:var(--accent);color:var(--pill-c);transform:scale(1.08)}
     
     .hobbies-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;width:100%}
+    @media(max-width:700px){.hobbies-grid{grid-template-columns:repeat(2,1fr);gap:16px}}
+    @media(max-width:500px){.hobbies-grid{grid-template-columns:1fr;gap:14px}}
     .hobby-card{grid-column:span 2;background:var(--card);box-shadow:var(--shadow);border-radius:24px;padding:30px;cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);animation:fadeUp .5s both;border:1px solid transparent;position:relative;overflow:hidden;width:100%}
-    @media(max-width:600px){.hobby-card{padding:20px;border-radius:20px}}
-    @media(max-width:400px){.hobby-card{padding:16px;border-radius:18px}}
+    @media(max-width:700px){.hobby-card{grid-column:span 1;padding:24px;border-radius:20px}}
+    @media(max-width:600px){.hobby-card{padding:20px}}
+    @media(max-width:500px){.hobby-card{grid-column:auto;padding:24px}}
+    @media(max-width:400px){.hobby-card{padding:20px;border-radius:18px}}
     .hobby-card::before{content:'';position:absolute;inset:0;background:var(--accent-gradient);opacity:0;transition:opacity .4s;z-index:0}
     .hobby-card:hover::before{opacity:.08}
     .hobby-card>*{position:relative;z-index:1}
-    .hobby-card:nth-child(4){grid-column:2 / 4}
-    .hobby-card:nth-child(5){grid-column:4 / 6}
-    @media(max-width:700px){.hobbies-grid{grid-template-columns:repeat(4,1fr)}.hobby-card{grid-column:span 2}.hobby-card:nth-child(4){grid-column:span 2}.hobby-card:nth-child(5){grid-column:span 2}}
-    @media(max-width:500px){.hobbies-grid{grid-template-columns:1fr}.hobby-card{grid-column:auto}}
     .hobby-card:hover{transform:translateY(-8px) scale(1.03);box-shadow:var(--shadow-hover);border-color:var(--glow)}
     .hobby-icon-wrap{width:56px;height:56px;border-radius:16px;background:var(--tag-bg);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
     .hobby-icon-wrap::before{content:'';position:absolute;inset:0;background:var(--accent-gradient);opacity:0;transition:opacity .4s}
