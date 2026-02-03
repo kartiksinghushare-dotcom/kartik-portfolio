@@ -268,6 +268,14 @@ export default function DigitalCV() {
     navigator.clipboard.writeText('kartiksinghushare@gmail.com');
     setEmailCopied(true);
     setTimeout(() => setEmailCopied(false), 2000);
+    
+    // GA tracking
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'email_copy', {
+        'event_category': 'engagement',
+        'event_label': 'Email Copied'
+      });
+    }
   };
 
   const switchPage = (name) => {
@@ -276,6 +284,30 @@ export default function DigitalCV() {
     setPageKey(k => k + 1);
     setSkillsVisible(false);
     if (name === "Skills") setTimeout(() => setSkillsVisible(true), 300);
+    
+    // Update page title for GA tracking
+    const pageTitles = {
+      "Home": "Kartik Hushare - Home",
+      "About": "Kartik Hushare - About Me",
+      "Experience": "Kartik Hushare - Professional Experience",
+      "Education": "Kartik Hushare - Education & Certifications",
+      "Skills": "Kartik Hushare - Skills & Expertise",
+      "Hobbies": "Kartik Hushare - Interests & Hobbies",
+      "Contact": "Kartik Hushare - Contact Information"
+    };
+    
+    if (typeof document !== 'undefined') {
+      document.title = pageTitles[name] || "Kartik Hushare - Portfolio";
+    }
+    
+    // GA page view tracking
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_title: pageTitles[name],
+        page_location: window.location.href,
+        page_path: `/${name.toLowerCase()}`
+      });
+    }
   };
 
   useEffect(() => { 
@@ -295,6 +327,14 @@ export default function DigitalCV() {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`
     };
     window.open(urls[platform], '_blank');
+    
+    // GA tracking
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', `share_${platform}`, {
+        'event_category': 'social_share',
+        'event_label': `Shared on ${platform.charAt(0).toUpperCase() + platform.slice(1)}`
+      });
+    }
   };
 
   const renderContent = () => {
@@ -498,7 +538,15 @@ export default function DigitalCV() {
               <button 
                 key={f} 
                 className={`filter-btn ${expFilter === f ? 'active' : ''}`}
-                onClick={() => setExpFilter(f)}
+                onClick={() => {
+                  setExpFilter(f);
+                  if (typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', 'experience_filter', {
+                      'event_category': 'filter',
+                      'event_label': f
+                    });
+                  }
+                }}
               >
                 {f}
               </button>
@@ -653,11 +701,11 @@ export default function DigitalCV() {
             <p className="contact-intro">I'm open to opportunities in operations, systems, and business process roles. Feel free to reach out.</p>
             <div className="contact-card">
               {[
-                { icon: "✉️", label: "Email", value: "kartiksinghushare@gmail.com", href: "mailto:kartiksinghushare@gmail.com", copyable: true },
-                { icon: "📱", label: "Phone (UAE)", value: "+971 50 966 0624", href: "tel:+971509660624", whatsapp: "https://wa.me/971509660624" },
-                { icon: "☎️", label: "Phone (India)", value: "+91 8484842859", href: "tel:+918484842859", note: "Available during travel/vacation" },
-                { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/kartiksingh-hushare-1a6698251", href: "https://www.linkedin.com/in/kartiksingh-hushare-1a6698251" },
-                { icon: "📸", label: "Instagram", value: "@kartikhushare", href: "https://www.instagram.com/kartikhushare" },
+                { icon: "✉️", label: "Email", value: "kartiksinghushare@gmail.com", href: "mailto:kartiksinghushare@gmail.com", copyable: true, gaEvent: "email_click" },
+                { icon: "📱", label: "Phone (UAE)", value: "+971 50 966 0624", href: "tel:+971509660624", whatsapp: "https://wa.me/971509660624", gaEvent: "phone_uae_click" },
+                { icon: "☎️", label: "Phone (India)", value: "+91 8484842859", href: "tel:+918484842859", note: "Available during travel/vacation", gaEvent: "phone_india_click" },
+                { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/kartiksingh-hushare-1a6698251", href: "https://www.linkedin.com/in/kartiksingh-hushare-1a6698251", gaEvent: "linkedin_click" },
+                { icon: "📸", label: "Instagram", value: "@kartikhushare", href: "https://www.instagram.com/kartikhushare", gaEvent: "instagram_click" },
                 { icon: "📍", label: "Location", value: "Dubai, UAE", href: null }
               ].map((c, i) => (
                 <div className="contact-row" key={i}>
@@ -665,7 +713,23 @@ export default function DigitalCV() {
                   <div className="contact-info">
                     <div className="contact-label">{c.label}</div>
                     <div className="contact-value">
-                      {c.href ? <a href={c.href} target="_blank" rel="noopener noreferrer">{c.value}</a> : c.value}
+                      {c.href ? (
+                        <a 
+                          href={c.href} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            if (c.gaEvent && typeof window !== 'undefined' && window.gtag) {
+                              window.gtag('event', c.gaEvent, {
+                                'event_category': 'contact',
+                                'event_label': c.label
+                              });
+                            }
+                          }}
+                        >
+                          {c.value}
+                        </a>
+                      ) : c.value}
                       {c.note && <div className="contact-note">{c.note}</div>}
                     </div>
                   </div>
@@ -676,7 +740,20 @@ export default function DigitalCV() {
                       </button>
                     )}
                     {c.whatsapp && (
-                      <a href={c.whatsapp} target="_blank" rel="noopener noreferrer" className="whatsapp-btn">
+                      <a 
+                        href={c.whatsapp} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="whatsapp-btn"
+                        onClick={() => {
+                          if (typeof window !== 'undefined' && window.gtag) {
+                            window.gtag('event', 'whatsapp_click', {
+                              'event_category': 'contact',
+                              'event_label': 'WhatsApp UAE'
+                            });
+                          }
+                        }}
+                      >
                         💬 WhatsApp
                       </a>
                     )}
@@ -685,7 +762,15 @@ export default function DigitalCV() {
               ))}
             </div>
             <div className="resume-download-section">
-              <button className="download-resume-btn" onClick={() => window.open('https://drive.google.com/uc?export=download&id=1sa2BTDTzHaveFcFGYL3LwMJjcGQoVjA6', '_blank')}>
+              <button className="download-resume-btn" onClick={() => {
+                window.open('https://drive.google.com/uc?export=download&id=1sa2BTDTzHaveFcFGYL3LwMJjcGQoVjA6', '_blank');
+                if (typeof window !== 'undefined' && window.gtag) {
+                  window.gtag('event', 'resume_download', {
+                    'event_category': 'engagement',
+                    'event_label': 'Resume Downloaded'
+                  });
+                }
+              }}>
                 <span className="download-icon">📄</span>
                 <div>
                   <div className="download-label">Download Resume</div>
