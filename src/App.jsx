@@ -315,6 +315,17 @@ export default function DigitalCV() {
                 </span>
               </div>
             </div>
+            
+            <div className="travel-banner">
+              <div className="travel-banner-icon">✈️</div>
+              <div className="travel-banner-content">
+                <div className="travel-banner-title">Travel Notice</div>
+                <div className="travel-banner-text">
+                  Traveling to India: <strong>20th Feb - 2nd Mar 2026</strong>
+                  <br />Available for online interviews during this period
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="home-content-grid">
@@ -643,8 +654,10 @@ export default function DigitalCV() {
             <div className="contact-card">
               {[
                 { icon: "✉️", label: "Email", value: "kartiksinghushare@gmail.com", href: "mailto:kartiksinghushare@gmail.com", copyable: true },
-                { icon: "📞", label: "Phone / WhatsApp", value: "+971 50 966 0624", href: null },
+                { icon: "📱", label: "Phone (UAE)", value: "+971 50 966 0624", href: "tel:+971509660624", whatsapp: "https://wa.me/971509660624" },
+                { icon: "☎️", label: "Phone (India)", value: "+91 8484842859", href: "tel:+918484842859", note: "Available during travel/vacation" },
                 { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/kartiksingh-hushare-1a6698251", href: "https://www.linkedin.com/in/kartiksingh-hushare-1a6698251" },
+                { icon: "📸", label: "Instagram", value: "@kartikhushare", href: "https://www.instagram.com/kartikhushare" },
                 { icon: "📍", label: "Location", value: "Dubai, UAE", href: null }
               ].map((c, i) => (
                 <div className="contact-row" key={i}>
@@ -653,13 +666,21 @@ export default function DigitalCV() {
                     <div className="contact-label">{c.label}</div>
                     <div className="contact-value">
                       {c.href ? <a href={c.href} target="_blank" rel="noopener noreferrer">{c.value}</a> : c.value}
+                      {c.note && <div className="contact-note">{c.note}</div>}
                     </div>
                   </div>
-                  {c.copyable && (
-                    <button className="copy-email-btn" onClick={copyEmail}>
-                      {emailCopied ? '✓ Copied!' : '📋 Copy'}
-                    </button>
-                  )}
+                  <div className="contact-actions">
+                    {c.copyable && (
+                      <button className="copy-email-btn" onClick={copyEmail}>
+                        {emailCopied ? '✓ Copied!' : '📋 Copy'}
+                      </button>
+                    )}
+                    {c.whatsapp && (
+                      <a href={c.whatsapp} target="_blank" rel="noopener noreferrer" className="whatsapp-btn">
+                        💬 WhatsApp
+                      </a>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -748,6 +769,18 @@ export default function DigitalCV() {
     .availability-text{font-size:13px;font-weight:600}
     .availability-btn{background:var(--tag-bg);border:none;padding:8px 16px;border-radius:50px;font-size:12px;cursor:pointer;transition:all .3s;color:var(--accent)}
     .availability-btn:hover{background:var(--accent);color:var(--pill-c);transform:scale(1.05)}
+    
+    .travel-banner{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(102,126,234,0.1) 0%,rgba(118,75,162,0.1) 100%);border:1px solid var(--glow);border-radius:16px;padding:20px 24px;margin-top:24px;animation:fadeUp .6s .3s ease both;transition:all .3s}
+    @media(max-width:600px){.travel-banner{padding:16px 18px;gap:12px;flex-direction:column;text-align:center}}
+    .travel-banner:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .travel-banner-icon{font-size:32px;flex-shrink:0;animation:float 3s ease-in-out infinite}
+    @media(max-width:600px){.travel-banner-icon{font-size:28px}}
+    .travel-banner-content{flex:1}
+    .travel-banner-title{font-size:14px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+    @media(max-width:600px){.travel-banner-title{font-size:12px}}
+    .travel-banner-text{font-size:14px;color:var(--muted);line-height:1.6}
+    @media(max-width:600px){.travel-banner-text{font-size:13px}}
+    .travel-banner-text strong{color:var(--accent);font-weight:600}
     
     .home-content-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:64px;animation:fadeUp .6s .4s ease both;width:100%}
     @media(max-width:800px){.home-content-grid{grid-template-columns:1fr;gap:24px}}
@@ -1012,9 +1045,13 @@ export default function DigitalCV() {
     @media(max-width:600px){.contact-value{font-size:13px}}
     .contact-value a{color:inherit;text-decoration:none;transition:all .3s}
     .contact-value a:hover{background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .copy-email-btn{background:var(--tag-bg);border:1px solid var(--nav-border);padding:8px 16px;border-radius:50px;font-size:12px;cursor:pointer;transition:all .3s;color:var(--accent);font-family:'DM Sans',sans-serif;font-weight:500;white-space:nowrap;flex-shrink:0}
-    @media(max-width:600px){.copy-email-btn{font-size:11px;padding:6px 12px}}
-    .copy-email-btn:hover{background:var(--accent-gradient);color:#fff;border-color:transparent;transform:scale(1.05);box-shadow:0 2px 8px var(--glow)}
+    .contact-note{font-size:11px;color:var(--muted2);font-style:italic;margin-top:4px}
+    .contact-actions{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap}
+    @media(max-width:600px){.contact-actions{gap:6px}}
+    .copy-email-btn,.whatsapp-btn{background:var(--tag-bg);border:1px solid var(--nav-border);padding:8px 16px;border-radius:50px;font-size:12px;cursor:pointer;transition:all .3s;color:var(--accent);font-family:'DM Sans',sans-serif;font-weight:500;white-space:nowrap;text-decoration:none;display:inline-block}
+    @media(max-width:600px){.copy-email-btn,.whatsapp-btn{font-size:11px;padding:6px 12px}}
+    .copy-email-btn:hover,.whatsapp-btn:hover{background:var(--accent-gradient);color:#fff;border-color:transparent;transform:scale(1.05);box-shadow:0 2px 8px var(--glow)}
+    .whatsapp-btn:hover{background:linear-gradient(135deg,#25d366 0%,#128c7e 100%)}
     .resume-download-section{margin-top:32px;animation:fadeUp .6s .4s ease both}
     .download-resume-btn{width:100%;background:var(--accent-gradient);color:#fff;border:none;border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 16px var(--glow);position:relative;overflow:hidden}
     .download-resume-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#764ba2 0%,#667eea 100%);opacity:0;transition:opacity .3s}
