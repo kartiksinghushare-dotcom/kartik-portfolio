@@ -106,14 +106,14 @@ const educationData = [
 
 const skillsData = [
   { id:1, category:"Management & Leadership", icon:"📋", items:[
-    { name:"Project Management", level:88, tags:["Planning","Execution","Risk Mgmt"] },
+    { name:"Project Management 🔥", level:88, tags:["Planning","Execution","Risk Mgmt"] },
     { name:"Cross-functional Leadership", level:85, tags:["Stakeholder Comm.","Negotiation","Collaboration"] },
     { name:"Risk & Change Management", level:78, tags:["Lean Six Sigma","Problem Solving"] }
   ]},
   { id:2, category:"Operations & Supply Chain", icon:"🔄", items:[
-    { name:"Business Process Analysis", level:92, tags:["Workflow Design","Optimization","Bottleneck Identification"] },
+    { name:"Business Process Analysis 🔥", level:92, tags:["Workflow Design","Optimization","Bottleneck Identification"] },
     { name:"Supply Chain & Inventory", level:85, tags:["Inbound","Outbound","Accuracy Control"] },
-    { name:"Operations Management", level:90, tags:["SLA Mgmt","KPI Tracking","Process Control"] }
+    { name:"Operations Management 🔥", level:90, tags:["SLA Mgmt","KPI Tracking","Process Control"] }
   ]},
   { id:3, category:"Communication & People Skills", icon:"💬", items:[
     { name:"Stakeholder Communication", level:88, tags:["Presentations","Reporting","Alignment"] },
@@ -121,14 +121,15 @@ const skillsData = [
     { name:"Team Leadership & Training", level:85, tags:["Mentoring","Feedback","Motivation"] }
   ]},
   { id:4, category:"Systems & Technology", icon:"⚙️", items:[
-    { name:"ERP & CRM Systems", level:82, tags:["Implementation","Configuration","Integration"] },
-    { name:"Automation & AI Workflows", level:80, tags:["Process Automation","Barcoding","AI Tools"] },
+    { name:"ERP & CRM Systems 🔥", level:82, tags:["Implementation","Configuration","Integration"] },
+    { name:"Automation & AI Workflows 🔥", level:80, tags:["Process Automation","Barcoding","AI Tools"] },
     { name:"Mobile App Deployment", level:72, tags:["Coordination","QA","Launch"] }
   ]},
   { id:5, category:"Data & Analytics", icon:"📊", items:[
-    { name:"Power BI & Dashboarding", level:86, tags:["DAX","Interactive Reports","Cost Analysis"] },
-    { name:"Data Analysis & Reporting", level:88, tags:["Excel","Variance Tracking","KPIs"] },
-    { name:"Advanced MS Office", level:90, tags:["Excel","PowerPoint","Word"] }
+    { name:"Power BI & Dashboarding 🔥", level:86, tags:["DAX","Interactive Reports","Cost Analysis"] },
+    { name:"Data Analysis & Reporting 🔥", level:88, tags:["Excel","Variance Tracking","KPIs"] },
+    { name:"Google Analytics", level:75, tags:["GA4","Event Tracking","Dashboards"] },
+    { name:"Advanced MS Office 🔥", level:90, tags:["Excel","PowerPoint","Word"] }
   ]},
   { id:6, category:"Programming & Certs", icon:"💻", items:[
     { name:"Python", level:70, tags:["Bootcamp","Data Scripts","Automation"] },
@@ -261,6 +262,9 @@ export default function DigitalCV() {
   const [expFilter, setExpFilter] = useState("All");
   const [availability, setAvailability] = useState(true);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [feedbackForm, setFeedbackForm] = useState({ name: '', email: '', message: '', rating: '' });
+  const [feedbackSubmitting, setFeedbackSubmitting] = useState(false);
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
   const experience = calculateExperience();
 
@@ -275,6 +279,47 @@ export default function DigitalCV() {
         'event_category': 'engagement',
         'event_label': 'Email Copied'
       });
+    }
+  };
+
+  const handleFeedbackSubmit = async (e) => {
+    e.preventDefault();
+    setFeedbackSubmitting(true);
+
+    try {
+      // Google Sheets Web App URL
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwUE6sf7gnrn_LTsYi932Zq41aPvYUEoEuSnVBzWTyIqzG_6AaUi8aH12HBQ3cxJQ9cMw/exec';
+      
+      const formData = new FormData();
+      formData.append('name', feedbackForm.name);
+      formData.append('email', feedbackForm.email);
+      formData.append('message', feedbackForm.message);
+      formData.append('rating', feedbackForm.rating);
+      formData.append('timestamp', new Date().toLocaleString());
+
+      await fetch(scriptURL, {
+        method: 'POST',
+        body: formData
+      });
+
+      setFeedbackSubmitted(true);
+      setFeedbackForm({ name: '', email: '', message: '', rating: '' });
+      
+      // GA tracking
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'feedback_submit', {
+          'event_category': 'engagement',
+          'event_label': 'Feedback Submitted',
+          'value': feedbackForm.rating
+        });
+      }
+
+      setTimeout(() => setFeedbackSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      alert('Failed to submit feedback. Please try again.');
+    } finally {
+      setFeedbackSubmitting(false);
     }
   };
 
@@ -656,6 +701,8 @@ export default function DigitalCV() {
         <div className="section-fade" key={pageKey}>
           <BgDeco page="Skills" />
           <div className="section-title">Skills & Capabilities</div>
+
+          {/* All Skills by Category */}
           <div className="skills-master">
             {skillsData.map((cat, ci) => (
               <div className="skill-category" key={cat.id} style={{ animationDelay: `${ci * 90}ms` }}>
@@ -696,87 +743,154 @@ export default function DigitalCV() {
       case "Contact": return (
         <div className="section-fade" key={pageKey}>
           <BgDeco page="Contact" />
-          <div className="contact-layout">
-            <div className="section-title">Let's Connect</div>
-            <p className="contact-intro">I'm open to opportunities in operations, systems, and business process roles. Feel free to reach out.</p>
-            <div className="contact-card">
-              {[
-                { icon: "✉️", label: "Email", value: "kartiksinghushare@gmail.com", href: "mailto:kartiksinghushare@gmail.com", copyable: true, gaEvent: "email_click" },
-                { icon: "📱", label: "Phone (UAE)", value: "+971 50 966 0624", href: "tel:+971509660624", whatsapp: "https://wa.me/971509660624", gaEvent: "phone_uae_click" },
-                { icon: "☎️", label: "Phone (India)", value: "+91 8484842859", href: "tel:+918484842859", note: "Available during travel/vacation", gaEvent: "phone_india_click" },
-                { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/kartiksingh-hushare-1a6698251", href: "https://www.linkedin.com/in/kartiksingh-hushare-1a6698251", gaEvent: "linkedin_click" },
-                { icon: "📸", label: "Instagram", value: "@kartikhushare", href: "https://www.instagram.com/kartikhushare", gaEvent: "instagram_click" },
-                { icon: "📍", label: "Location", value: "Dubai, UAE", href: null }
-              ].map((c, i) => (
-                <div className="contact-row" key={i}>
-                  <div className="contact-icon">{c.icon}</div>
-                  <div className="contact-info">
-                    <div className="contact-label">{c.label}</div>
-                    <div className="contact-value">
-                      {c.href ? (
+          <div className="section-title">Let's Connect</div>
+          <p className="contact-intro">I'm open to opportunities in operations, systems, and business process roles. Feel free to reach out.</p>
+          
+          <div className="contact-feedback-grid">
+            {/* Contact Information */}
+            <div className="contact-column">
+              <div className="column-title">Contact Information</div>
+              <div className="contact-card">
+                {[
+                  { icon: "✉️", label: "Email", value: "kartiksinghushare@gmail.com", href: "mailto:kartiksinghushare@gmail.com", copyable: true, gaEvent: "email_click" },
+                  { icon: "📱", label: "Phone (UAE)", value: "+971 50 966 0624", href: "tel:+971509660624", whatsapp: "https://wa.me/971509660624", gaEvent: "phone_uae_click" },
+                  { icon: "☎️", label: "Phone (India)", value: "+91 8484842859", href: "tel:+918484842859", note: "Available during travel/vacation", gaEvent: "phone_india_click" },
+                  { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/kartiksingh-hushare-1a6698251", href: "https://www.linkedin.com/in/kartiksingh-hushare-1a6698251", gaEvent: "linkedin_click" },
+                  { icon: "📸", label: "Instagram", value: "@kartikhushare", href: "https://www.instagram.com/kartikhushare", gaEvent: "instagram_click" },
+                  { icon: "📍", label: "Location", value: "Dubai, UAE", href: null }
+                ].map((c, i) => (
+                  <div className="contact-row" key={i}>
+                    <div className="contact-icon">{c.icon}</div>
+                    <div className="contact-info">
+                      <div className="contact-label">{c.label}</div>
+                      <div className="contact-value">
+                        {c.href ? (
+                          <a 
+                            href={c.href} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            onClick={() => {
+                              if (c.gaEvent && typeof window !== 'undefined' && window.gtag) {
+                                window.gtag('event', c.gaEvent, {
+                                  'event_category': 'contact',
+                                  'event_label': c.label
+                                });
+                              }
+                            }}
+                          >
+                            {c.value}
+                          </a>
+                        ) : c.value}
+                        {c.note && <div className="contact-note">{c.note}</div>}
+                      </div>
+                    </div>
+                    <div className="contact-actions">
+                      {c.copyable && (
+                        <button className="copy-email-btn" onClick={copyEmail}>
+                          {emailCopied ? '✓ Copied!' : '📋 Copy'}
+                        </button>
+                      )}
+                      {c.whatsapp && (
                         <a 
-                          href={c.href} 
+                          href={c.whatsapp} 
                           target="_blank" 
-                          rel="noopener noreferrer"
+                          rel="noopener noreferrer" 
+                          className="whatsapp-btn"
                           onClick={() => {
-                            if (c.gaEvent && typeof window !== 'undefined' && window.gtag) {
-                              window.gtag('event', c.gaEvent, {
+                            if (typeof window !== 'undefined' && window.gtag) {
+                              window.gtag('event', 'whatsapp_click', {
                                 'event_category': 'contact',
-                                'event_label': c.label
+                                'event_label': 'WhatsApp UAE'
                               });
                             }
                           }}
                         >
-                          {c.value}
+                          💬 WhatsApp
                         </a>
-                      ) : c.value}
-                      {c.note && <div className="contact-note">{c.note}</div>}
+                      )}
                     </div>
                   </div>
-                  <div className="contact-actions">
-                    {c.copyable && (
-                      <button className="copy-email-btn" onClick={copyEmail}>
-                        {emailCopied ? '✓ Copied!' : '📋 Copy'}
-                      </button>
-                    )}
-                    {c.whatsapp && (
-                      <a 
-                        href={c.whatsapp} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="whatsapp-btn"
-                        onClick={() => {
-                          if (typeof window !== 'undefined' && window.gtag) {
-                            window.gtag('event', 'whatsapp_click', {
-                              'event_category': 'contact',
-                              'event_label': 'WhatsApp UAE'
-                            });
-                          }
-                        }}
+                ))}
+              </div>
+              <div className="resume-download-section">
+                <button className="download-resume-btn" onClick={() => {
+                  window.open('https://drive.google.com/uc?export=download&id=1sa2BTDTzHaveFcFGYL3LwMJjcGQoVjA6', '_blank');
+                  if (typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', 'resume_download', {
+                      'event_category': 'engagement',
+                      'event_label': 'Resume Downloaded'
+                    });
+                  }
+                }}>
+                  <span className="download-icon">📄</span>
+                  <div>
+                    <div className="download-label">Download Resume</div>
+                    <div className="download-sublabel">PDF Format · Updated Jan 2025</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* Feedback Form */}
+            <div className="feedback-column">
+              <div className="column-title">Send Feedback</div>
+              <form className="feedback-form" onSubmit={handleFeedbackSubmit}>
+                <div className="form-group">
+                  <label className="form-label">Name *</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="Your name"
+                    value={feedbackForm.name}
+                    onChange={(e) => setFeedbackForm({...feedbackForm, name: e.target.value})}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Email *</label>
+                  <input
+                    type="email"
+                    className="form-input"
+                    placeholder="your.email@example.com"
+                    value={feedbackForm.email}
+                    onChange={(e) => setFeedbackForm({...feedbackForm, email: e.target.value})}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">How would you rate this portfolio? *</label>
+                  <div className="rating-buttons">
+                    {[1, 2, 3, 4, 5].map(num => (
+                      <button
+                        key={num}
+                        type="button"
+                        className={`rating-btn ${feedbackForm.rating === num.toString() ? 'active' : ''}`}
+                        onClick={() => setFeedbackForm({...feedbackForm, rating: num.toString()})}
                       >
-                        💬 WhatsApp
-                      </a>
-                    )}
+                        {'⭐'.repeat(num)}
+                      </button>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-            <div className="resume-download-section">
-              <button className="download-resume-btn" onClick={() => {
-                window.open('https://drive.google.com/uc?export=download&id=1sa2BTDTzHaveFcFGYL3LwMJjcGQoVjA6', '_blank');
-                if (typeof window !== 'undefined' && window.gtag) {
-                  window.gtag('event', 'resume_download', {
-                    'event_category': 'engagement',
-                    'event_label': 'Resume Downloaded'
-                  });
-                }
-              }}>
-                <span className="download-icon">📄</span>
-                <div>
-                  <div className="download-label">Download Resume</div>
-                  <div className="download-sublabel">PDF Format · Updated Jan 2025</div>
+                <div className="form-group">
+                  <label className="form-label">Message *</label>
+                  <textarea
+                    className="form-textarea"
+                    placeholder="Share your thoughts, suggestions, or feedback..."
+                    rows="6"
+                    value={feedbackForm.message}
+                    onChange={(e) => setFeedbackForm({...feedbackForm, message: e.target.value})}
+                    required
+                  ></textarea>
                 </div>
-              </button>
+                <button 
+                  type="submit" 
+                  className="feedback-submit-btn"
+                  disabled={feedbackSubmitting || feedbackSubmitted}
+                >
+                  {feedbackSubmitting ? '⏳ Sending...' : feedbackSubmitted ? '✅ Sent!' : '📨 Send Feedback'}
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -1112,9 +1226,12 @@ export default function DigitalCV() {
     .hobby-desc{font-size:13.5px;color:var(--muted);max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0;line-height:1.65}
     .hobby-desc.visible{max-height:150px;opacity:1}
     
-    .contact-layout{max-width:580px}
-    .contact-intro{font-size:14.5px;color:var(--muted);margin-bottom:30px;line-height:1.8;animation:fadeUp .6s .2s ease both}
-    .contact-card{background:var(--card);box-shadow:var(--shadow);border-radius:24px;padding:10px 0;animation:fadeUp .6s .3s ease both;border:1px solid transparent;transition:all .4s}
+    .contact-intro{font-size:14.5px;color:var(--muted);margin-bottom:30px;line-height:1.8;animation:fadeUp .6s .2s ease both;text-align:center}
+    .contact-feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;animation:fadeUp .6s .3s ease both}
+    @media(max-width:900px){.contact-feedback-grid{grid-template-columns:1fr;gap:28px}}
+    .contact-column,.feedback-column{width:100%}
+    .column-title{font-size:20px;font-weight:700;margin-bottom:20px;background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .contact-card{background:var(--card);box-shadow:var(--shadow);border-radius:24px;padding:10px 0;border:1px solid transparent;transition:all .4s}
     .contact-card:hover{box-shadow:var(--shadow-hover);border-color:var(--glow)}
     .contact-row{display:flex;align-items:center;gap:20px;padding:20px 28px;border-bottom:1px solid var(--nav-border);transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;flex-wrap:wrap}
     @media(max-width:600px){.contact-row{padding:16px 20px;gap:12px}}
@@ -1147,6 +1264,24 @@ export default function DigitalCV() {
     .download-label{font-size:16px;font-weight:600;text-align:left}
     .download-sublabel{font-size:12px;opacity:.9;margin-top:2px;text-align:left}
     @media(max-width:600px){.download-resume-btn{padding:16px 20px}.download-icon{font-size:24px}.download-label{font-size:14px}.download-sublabel{font-size:11px}}
+    
+    /* Feedback Form Styles */
+    .feedback-form{background:var(--card);box-shadow:var(--shadow);border-radius:24px;padding:28px;border:1px solid var(--nav-border);transition:all .4s}
+    .feedback-form:hover{box-shadow:var(--shadow-hover);border-color:var(--glow)}
+    .form-group{margin-bottom:20px}
+    .form-label{display:block;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
+    .form-input,.form-textarea{width:100%;background:var(--hover-card);border:1px solid var(--nav-border);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--accent);font-family:'DM Sans',sans-serif;transition:all .3s;resize:vertical}
+    .form-input:focus,.form-textarea:focus{outline:none;border-color:var(--glow);box-shadow:0 0 0 3px rgba(102,126,234,0.1)}
+    .form-input::placeholder,.form-textarea::placeholder{color:var(--muted2)}
+    .rating-buttons{display:flex;gap:8px;flex-wrap:wrap}
+    .rating-btn{background:var(--tag-bg);border:1px solid var(--nav-border);padding:10px 16px;border-radius:12px;font-size:16px;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+    .rating-btn:hover{background:var(--hover-card);transform:scale(1.05)}
+    .rating-btn.active{background:var(--accent-gradient);color:#fff;border-color:transparent;transform:scale(1.05);box-shadow:0 4px 12px var(--glow)}
+    .feedback-submit-btn{width:100%;background:var(--accent-gradient);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif;box-shadow:0 4px 12px var(--glow)}
+    .feedback-submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 20px var(--glow)}
+    .feedback-submit-btn:disabled{opacity:0.6;cursor:not-allowed}
+    @media(max-width:600px){.feedback-form{padding:20px}.form-input,.form-textarea{padding:10px 14px;font-size:13px}.rating-btn{padding:8px 12px;font-size:14px}}
+    
     .footer{text-align:center;font-size:12px;color:var(--muted2);padding:32px 0 16px;position:relative;z-index:1;animation:fadeUp .6s .5s ease both}
       `}</style>
       <div className={`portfolio-root ${dark ? "dark" : "light"}`}>
