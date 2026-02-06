@@ -38,7 +38,7 @@ if (typeof document !== 'undefined') {
 }
 
 // ========== DATA ==========
-const pages = ["Home","About","Experience","Education","Skills","Hobbies","Contact"];
+const pages = ["Home","About","Work","Education","Skills","Contact"];
 
 const experienceData = [
   { id:1, title:"Business Process & Systems Analyst", company:"BloomingBox LLC", type:"Full-time", period:"Nov 2024 – Present", location:"On-site", description:[
@@ -50,7 +50,7 @@ const experienceData = [
     "Built interactive Power BI dashboards with advanced DAX measures for cost analysis and variance tracking."
   ], achievements:[
     { metric:"Order Completion Time", result:"10 mins → <1 min", icon:"⚡" },
-    { metric:"Weekly Reconciliations", result:"132 → 30-40", icon:"📉" },
+    { metric:"Weekly Reconciliations", result:"132 → 30-35", icon:"📉" },
     { metric:"Stock Accuracy", result:"Achieved 85%", icon:"✓" },
     { metric:"COGS Reduction", result:"Down 2-3%", icon:"💰" },
     { metric:"Accounting Module", result:"Built from Scratch", icon:"🏗️" },
@@ -89,6 +89,139 @@ const experienceData = [
     { metric:"Stock Management", result:"Enhanced with Bayaskar Software", icon:"📊" },
     { metric:"COVID Operations", result:"Maintained Store Functionality", icon:"🏪" }
   ]}
+];
+
+const projectsData = [
+  { 
+    id:1, 
+    title:"End-to-End Accounting Module Implementation", 
+    company:"BloomingBox LLC", 
+    type:"Project", 
+    period:"Nov 2024 – Jan 2025", 
+    category:"ERP & Systems",
+    tags:["ERP Development", "Financial Systems", "Process Design", "Change Management"],
+    challenge:"After the head of finance resigned, critical financial discrepancies emerged — incorrect numbers, missing digital footprints, no approval workflows, and complete lack of documentation. The company had zero visibility into financial operations.",
+    solution:[
+      "Designed and implemented a complete accounting module from scratch including all ledgers, chart of accounts, and cost centers.",
+      "Built comprehensive approval workflows with digital footprints and role-based access controls to ensure accountability.",
+      "Integrated the module with procurement, inventory, asset management, and sales systems for end-to-end financial visibility.",
+      "Developed automated reports and Power BI dashboards for real-time money management, sales flow, and purchase flow tracking.",
+      "Created specialized voucher systems: landed cost vouchers, payment entries, journal entries — all connected to operational systems.",
+      "Established proper financial controls to bring operations back on track with accurate, auditable data."
+    ],
+    achievements:[
+      { metric:"System Components", result:"Built from Scratch", icon:"🏗️" },
+      { metric:"Digital Footprint", result:"100% Documented", icon:"📋" },
+      { metric:"Financial Visibility", result:"Real-time Insights", icon:"👁️" },
+      { metric:"Approval Workflows", result:"Fully Automated", icon:"✅" },
+      { metric:"System Integration", result:"4+ Modules Linked", icon:"🔗" }
+    ],
+    techStack:["ERP Customization", "Power BI", "Database Design", "Workflow Automation", "Access Control Systems"]
+  },
+  { 
+    id:2, 
+    title:"Dynamic COGS Analysis & Product-Level Costing System", 
+    company:"BloomingBox LLC", 
+    type:"Project", 
+    period:"Dec 2024 – Present", 
+    category:"Data Analytics",
+    tags:["Power BI", "DAX", "Cost Analysis", "Data Modeling", "Business Intelligence"],
+    challenge:"Previous finance head calculated COGS from P&L statements, which is inaccurate for the flower industry where prices change daily and product recipes vary. A small flower head means more flowers needed — traditional accounting methods couldn't capture this variability.",
+    solution:[
+      "Built a sophisticated Power BI system that calculates material costs at the product level for each individual order.",
+      "Implemented granular tracking: each order contains multiple items, each item has its own recipe, and each material's price varies daily.",
+      "Collaborated with production to redesign ERP workflows for accurate material consumption tracking at the line-item level.",
+      "Created multi-dimensional analysis: segmented COGS by product, item group, supplier, delivery date, creation date, and hub.",
+      "Developed planned vs. actual COGS comparison with variance analysis using advanced DAX measures.",
+      "Delivered actionable insights that identified cost-saving opportunities across the supply chain."
+    ],
+    achievements:[
+      { metric:"COGS Reduction", result:"2-3% Down", icon:"💰" },
+      { metric:"Calculation Accuracy", result:"Product-Level Precision", icon:"🎯" },
+      { metric:"Data Dimensions", result:"6+ Segmentations", icon:"📊" },
+      { metric:"Reporting Frequency", result:"Real-time Updates", icon:"⚡" },
+      { metric:"Cost Visibility", result:"Material-Level Tracking", icon:"🔍" }
+    ],
+    techStack:["Power BI", "Advanced DAX", "Data Modeling", "ERP Integration", "Excel", "SQL"]
+  },
+  { 
+    id:3, 
+    title:"ERP Performance Optimization & Server Migration", 
+    company:"BloomingBox LLC", 
+    type:"Project", 
+    period:"Nov 2024 – Dec 2024", 
+    category:"Automation & Optimization",
+    tags:["System Optimization", "Server Migration", "Performance Tuning", "Database Management"],
+    challenge:"The ERP system ran on AWS managed by a 3rd party, plagued by severe performance issues. With 500+ daily orders, each order took 5-8 minutes to complete. Inventory was duplicated multiple times, and orders were accepted even with zero stock.",
+    solution:[
+      "Completely restructured the order processing workflow to eliminate bottlenecks and redundant steps.",
+      "Removed all duplicate inventory entries and implemented proper stock tracking mechanisms.",
+      "Developed bulk completion functionality to process multiple orders simultaneously.",
+      "Implemented real-time stock reservation system to prevent overselling and ensure inventory accuracy.",
+      "Led the critical migration: took over ERP and database from 3rd party, transitioned to new server infrastructure.",
+      "Optimized database queries and scripts for dramatically improved performance."
+    ],
+    achievements:[
+      { metric:"Order Processing Time", result:"5-8 min → 10-15 sec", icon:"⚡" },
+      { metric:"Performance Improvement", result:"30x Faster", icon:"🚀" },
+      { metric:"Inventory Duplicates", result:"100% Eliminated", icon:"✓" },
+      { metric:"Server Migration", result:"Zero Downtime", icon:"🔄" },
+      { metric:"Daily Order Capacity", result:"500+ Orders Smooth", icon:"📦" }
+    ],
+    techStack:["AWS", "Database Optimization", "Server Management", "ERP Systems", "SQL", "Performance Tuning"]
+  },
+  { 
+    id:4, 
+    title:"Inventory Accuracy & Reconciliation System", 
+    company:"BloomingBox LLC", 
+    type:"Project", 
+    period:"Nov 2024 – Jan 2025", 
+    category:"Process Improvement",
+    tags:["Inventory Management", "Process Control", "Automation", "Quality Assurance"],
+    challenge:"Inventory chaos: inaccurate stock levels, incorrect deductions, 132+ weekly reconciliations needed, no purchase approvals, and untracked wastage/over-consumption. The system was riddled with human errors.",
+    solution:[
+      "Redesigned the entire inventory flow from receiving to consumption with proper checkpoints and validations.",
+      "Implemented automated stock deduction mechanisms to eliminate manual errors.",
+      "Built wastage and over-consumption tracking systems with variance reporting.",
+      "Established mandatory purchase approval workflows with multi-level authorization.",
+      "Created smart restrictions and validation rules to prevent common human errors at data entry points.",
+      "Developed real-time reconciliation dashboards to identify and resolve discrepancies quickly."
+    ],
+    achievements:[
+      { metric:"Stock Accuracy", result:"85-90% Achieved", icon:"✓" },
+      { metric:"Weekly Reconciliations", result:"132 → 30-35", icon:"📉" },
+      { metric:"Human Errors", result:"Significantly Reduced", icon:"🛡️" },
+      { metric:"Purchase Controls", result:"100% Approved", icon:"✅" },
+      { metric:"Wastage Tracking", result:"Fully Visible", icon:"♻️" }
+    ],
+    techStack:["ERP Workflow Design", "Inventory Management Systems", "Automation Rules", "Data Validation", "Reporting Tools"]
+  },
+  { 
+    id:5, 
+    title:"Interactive Portfolio Website", 
+    company:"Personal Project", 
+    type:"Project", 
+    period:"Jan 2025", 
+    category:"Web Development",
+    tags:["React", "JavaScript", "UI/UX Design", "Responsive Design", "Google Analytics"],
+    challenge:"Needed a professional, modern portfolio to showcase my operations and systems expertise in an engaging, interactive format that stands out from traditional CVs.",
+    solution:[
+      "Built a fully responsive, single-page React application with smooth animations and modern UI/UX.",
+      "Implemented dark/light mode toggle, interactive skill bars, and dynamic content filtering.",
+      "Integrated Google Analytics with custom event tracking for user behavior analysis and cold email campaign monitoring.",
+      "Created an embedded feedback form with Google Apps Script backend for direct visitor engagement.",
+      "Designed a unique experience/project filtering system with multiple view modes.",
+      "Optimized for mobile-first experience with careful attention to performance and accessibility."
+    ],
+    achievements:[
+      { metric:"Tech Stack", result:"React + Modern JS", icon:"⚛️" },
+      { metric:"Performance", result:"Fast & Responsive", icon:"⚡" },
+      { metric:"Design Quality", result:"Professional UI/UX", icon:"🎨" },
+      { metric:"Tracking", result:"Full GA4 Integration", icon:"📊" },
+      { metric:"Mobile Experience", result:"100% Optimized", icon:"📱" }
+    ],
+    techStack:["React", "JavaScript", "CSS3", "Google Analytics", "Google Apps Script", "Responsive Design"]
+  }
 ];
 
 const educationData = [
@@ -139,20 +272,22 @@ const skillsData = [
 ];
 
 const certifications = [
-  { title:"Lean Six Sigma White Belt", org:"(Advanced levels in progress)", icon:"🏅" },
-  { title:"Successful Negotiation", org:"University of Michigan", icon:"🎓" },
-  { title:"Social Psychology", org:"Wesleyan University", icon:"🧠" },
-  { title:"Python Bootcamp", org:"Udemy", icon:"🐍" },
-  { title:"Java Programming", org:"NIIT", icon:"☕" },
-  { title:"Operating Systems", org:"NPTEL", icon:"💾" }
+  { title:"Lean Six Sigma White Belt", org:"Six Sigma Institute", icon:"🏅", description:"Process improvement & quality management", status:"✓ Certified" },
+  { title:"Lean Six Sigma Yellow Belt", org:"In Progress", icon:"📚", description:"Advanced process optimization techniques", status:"🔄 In Progress", progress: 60 },
+  { title:"Successful Negotiation", org:"University of Michigan (Coursera)", icon:"🤝", description:"Essentials of strategic negotiation", status:"✓ Certified" },
+  { title:"Social Psychology", org:"Wesleyan University (Coursera)", icon:"🧠", description:"Understanding human behavior & influence", status:"✓ Certified" },
+  { title:"Python Programming Bootcamp", org:"Udemy", icon:"🐍", description:"Data analysis & automation scripting", status:"✓ Certified" },
+  { title:"Java Programming", org:"NIIT", icon:"☕", description:"Object-oriented programming fundamentals", status:"✓ Certified" },
+  { title:"Operating Systems", org:"NPTEL", icon:"💾", description:"Linux, process management & file systems", status:"✓ Certified" },
+  { title:"Google Analytics 4", org:"Google Skillshop", icon:"📊", description:"Web analytics & event tracking", status:"✓ Certified" }
 ];
 
 const hobbiesData = [
-  { id:1, title:"Psychology", icon:"🧠", description:"Fascinated by human behavior, communication dynamics, and social psychology. Helps me lead better, negotiate sharper, and build stronger teams." },
-  { id:2, title:"Startups & Entrepreneurship", icon:"🚀", description:"Drawn to the chaos and clarity of early-stage companies. Keen interest in lean execution, fast iteration, and scaling from zero to one." },
-  { id:3, title:"Anime", icon:"🎌", description:"A lifelong fan — from classics to modern hits. Anime shaped how I think about storytelling, strategy, and perseverance." },
-  { id:4, title:"Video Games", icon:"🎮", description:"Love strategy and problem-solving genres. Gaming sharpens my quick decision-making, pattern recognition, and competitive mindset." },
-  { id:5, title:"System & Strategic Thinking", icon:"🧩", description:"Solving bugs, simplifying workflows, and finding the hidden leverage point in any problem. Turning messy complexity into clean, elegant systems." }
+  { id:1, title:"Psychology & Human Behavior", icon:"🧠", description:"Fascinated by how the human mind works and how society shapes behavior. Understanding psychology helps me lead teams better, predict reactions, and design systems that align with how people actually think and act.", featured: true, badges: ["Social Psychology", "Behavioral Science", "Decision Making"] },
+  { id:2, title:"Startups & Market Exploration", icon:"🚀", description:"Love exploring markets, understanding what makes businesses tick, and analyzing competitive landscapes. Always studying how startups identify gaps, validate ideas, and execute in uncertain environments.", featured: true, badges: ["Market Analysis", "Business Models", "Growth Strategy"] },
+  { id:3, title:"One Piece & Anime", icon:"⛵", description:"Die-hard One Piece fan — 1000+ episodes and counting! The themes of ambition, perseverance, and building the right crew resonate deeply. Beyond Luffy's journey, I love anime's unique take on strategy, philosophy, and character development.", featured: true, badges: ["🏴‍☠️ Straw Hat Crew", "1000+ Episodes", "Grand Line Explorer"] },
+  { id:4, title:"PC & PS5 Gaming", icon:"🎮", description:"Love open-world exploration and competitive gaming on PC and PS5. Whether it's strategic planning in massive worlds or quick decision-making in competitive matches, gaming sharpens my problem-solving and keeps my reflexes sharp.", featured: true, badges: ["Open World", "Competitive", "Strategy"] },
+  { id:5, title:"Systems & Process Design", icon:"🧩", description:"Genuinely enjoy developing strategies, solving complex problems, and finding hidden issues in workflows. There's something deeply satisfying about turning a messy 10-step process into an elegant 2-click solution. Chaos → Clarity is my jam.", featured: true, badges: ["Process Optimization", "Problem Solving", "Automation"] }
 ];
 
 const languagesData = [
@@ -265,6 +400,8 @@ export default function DigitalCV() {
   const [feedbackForm, setFeedbackForm] = useState({ name: '', email: '', message: '', rating: '' });
   const [feedbackSubmitting, setFeedbackSubmitting] = useState(false);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+  const [expandedCard, setExpandedCard] = useState(null);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' && window.innerWidth <= 900);
 
   const experience = calculateExperience();
 
@@ -284,6 +421,13 @@ export default function DigitalCV() {
 
   const handleFeedbackSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate form
+    if (!feedbackForm.name || !feedbackForm.email || !feedbackForm.rating) {
+      alert('Please fill in all required fields (Name, Email, and Rating)');
+      return;
+    }
+    
     setFeedbackSubmitting(true);
 
     try {
@@ -293,15 +437,23 @@ export default function DigitalCV() {
       const formData = new FormData();
       formData.append('name', feedbackForm.name);
       formData.append('email', feedbackForm.email);
-      formData.append('message', feedbackForm.message);
+      formData.append('message', feedbackForm.message || 'No message provided');
       formData.append('rating', feedbackForm.rating);
-      formData.append('timestamp', new Date().toLocaleString());
 
-      await fetch(scriptURL, {
+      // Add timeout to prevent hanging
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+      const response = await fetch(scriptURL, {
         method: 'POST',
-        body: formData
+        body: formData,
+        signal: controller.signal,
+        mode: 'no-cors' // Important for Google Apps Script
       });
 
+      clearTimeout(timeoutId);
+
+      // With no-cors mode, we can't read the response, but if we get here, it likely succeeded
       setFeedbackSubmitted(true);
       setFeedbackForm({ name: '', email: '', message: '', rating: '' });
       
@@ -317,7 +469,12 @@ export default function DigitalCV() {
       setTimeout(() => setFeedbackSubmitted(false), 5000);
     } catch (error) {
       console.error('Error submitting feedback:', error);
-      alert('Failed to submit feedback. Please try again.');
+      
+      if (error.name === 'AbortError') {
+        alert('Submission is taking longer than expected. Your feedback may still be recorded. Please check back later or contact directly via email.');
+      } else {
+        alert('Failed to submit feedback. Please try again or contact directly via email: kartiksinghushare@gmail.com');
+      }
     } finally {
       setFeedbackSubmitting(false);
     }
@@ -334,10 +491,9 @@ export default function DigitalCV() {
     const pageTitles = {
       "Home": "Kartik Hushare - Home",
       "About": "Kartik Hushare - About Me",
-      "Experience": "Kartik Hushare - Professional Experience",
+      "Work": "Kartik Hushare - Experience & Projects",
       "Education": "Kartik Hushare - Education & Certifications",
       "Skills": "Kartik Hushare - Skills & Expertise",
-      "Hobbies": "Kartik Hushare - Interests & Hobbies",
       "Contact": "Kartik Hushare - Contact Information"
     };
     
@@ -358,6 +514,47 @@ export default function DigitalCV() {
   useEffect(() => { 
     if (active === "Skills") setTimeout(() => setSkillsVisible(true), 350);
   }, [active]);
+
+  // Handle mobile detection
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
+  // Track cold email visits
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const source = urlParams.get('source');
+      const campaign = urlParams.get('campaign');
+      const emailId = urlParams.get('email_id');
+      
+      // Track if visitor came from cold email
+      if (source === 'cold_email' || source === 'email' || campaign === 'cold_outreach') {
+        window.gtag('event', 'cold_email_visit', {
+          'event_category': 'acquisition',
+          'event_label': 'Cold Email Visit',
+          'campaign': campaign || 'cold_email',
+          'email_id': emailId || 'unknown',
+          'page_location': window.location.href
+        });
+        
+        // Also send as a page view with campaign info
+        window.gtag('event', 'page_view', {
+          'page_title': 'Portfolio - Cold Email Landing',
+          'page_location': window.location.href,
+          'campaign_source': 'cold_email',
+          'campaign_name': campaign || 'outreach'
+        });
+      }
+    }
+  }, []); // Run once on mount
 
   const filteredExperience = expFilter === "All" 
     ? experienceData 
@@ -399,16 +596,11 @@ export default function DigitalCV() {
                   Open to Opportunities
                 </span>
               </div>
-            </div>
-            
-            <div className="travel-banner">
-              <div className="travel-banner-icon">✈️</div>
-              <div className="travel-banner-content">
-                <div className="travel-banner-title">Travel Notice</div>
-                <div className="travel-banner-text">
-                  Traveling to India: <strong>20th Feb - 2nd Mar 2026</strong>
-                  <br />Available for online interviews during this period
-                </div>
+              <div className={`availability-status ${availability ? 'available' : 'unavailable'}`}>
+                <span className="availability-dot"></span>
+                <span className="availability-text">
+                  Available for Freelancing
+                </span>
               </div>
             </div>
           </div>
@@ -569,14 +761,35 @@ export default function DigitalCV() {
               ))}
             </div>
           </div>
+
+          {/* Hobbies Section within About */}
+          <div className="section-title" style={{ marginTop: 60, marginBottom: 12 }}>Interests & Hobbies</div>
+          <p className="hobbies-intro">Beyond work, these are the things that fuel my curiosity, shape my thinking, and keep me energized.</p>
+          <div className="hobbies-grid">
+            {hobbiesData.map((h, i) => (
+              <div className={`hobby-card ${h.featured ? 'featured' : ''}`} key={h.id} style={{ animationDelay: `${i * 100}ms` }}
+                onMouseEnter={() => setHovered(h)} onMouseLeave={() => setHovered(null)}>
+                <div className={`hobby-icon-wrap ${hovered?.id === h.id ? "active" : ""}`}>{h.icon}</div>
+                <div className="hobby-title">{h.title}</div>
+                {h.badges && (
+                  <div className="hobby-badges">
+                    {h.badges.map((badge, idx) => (
+                      <span key={idx} className="hobby-badge">{badge}</span>
+                    ))}
+                  </div>
+                )}
+                <div className={`hobby-desc ${hovered?.id === h.id ? "visible" : ""}`}>{h.description}</div>
+              </div>
+            ))}
+          </div>
         </div>
       );
 
-      // ============ EXPERIENCE ============
-      case "Experience": return (
+      // ============ WORK ============
+      case "Work": return (
         <div className="section-fade" key={pageKey}>
           <BgDeco page="Experience" />
-          <div className="section-title">Experience</div>
+          <div className="section-title">Professional Experience</div>
           
           <div className="filter-section">
             {["All", "Full-time", "Internship", "Remote", "On-site"].map(f => (
@@ -585,6 +798,7 @@ export default function DigitalCV() {
                 className={`filter-btn ${expFilter === f ? 'active' : ''}`}
                 onClick={() => {
                   setExpFilter(f);
+                  setExpandedCard(null);
                   if (typeof window !== 'undefined' && window.gtag) {
                     window.gtag('event', 'experience_filter', {
                       'event_category': 'filter',
@@ -598,24 +812,137 @@ export default function DigitalCV() {
             ))}
           </div>
 
-          <div className="split-grid">
-            <div className="detail-panel" 
-              onMouseEnter={() => hovered && setHovered(hovered)}>
-              {hovered && hovered.company ? (
-                <>
-                  <div className="detail-badge">{hovered.type}</div>
-                  <div className="detail-title">{hovered.title}</div>
-                  <div className="detail-company">{hovered.company}</div>
-                  <div className="detail-period">{hovered.period} · {hovered.location}</div>
-                  <ul className="detail-list">
-                    {hovered.description.slice(0, 3).map((d, i) => <li key={i}>{d}</li>)}
-                  </ul>
-                  {hovered.achievements && (
-                    <>
-                      <div className="achievements-label">Key Achievements</div>
+          {isMobile ? (
+            // Mobile: Expandable cards
+            <div className="mobile-cards-container">
+              {filteredExperience.map((item, i) => (
+                <div key={item.id} className={`mobile-exp-card ${expandedCard === `exp-${item.id}` ? 'expanded' : ''}`}
+                  style={{ animationDelay: `${i * 55}ms` }}>
+                  <div className="mobile-card-header" onClick={() => setExpandedCard(expandedCard === `exp-${item.id}` ? null : `exp-${item.id}`)}>
+                    <div className="item-card-dot"></div>
+                    <div style={{flex: 1}}>
+                      <div className="item-card-title">{item.title}</div>
+                      <div className="item-card-sub">{item.company} · {item.period}</div>
+                    </div>
+                    <span className="expand-icon">{expandedCard === `exp-${item.id}` ? '▲' : '▼'}</span>
+                  </div>
+                  {expandedCard === `exp-${item.id}` && (
+                    <div className="mobile-card-content">
+                      <div className="detail-badge">{item.type}</div>
+                      <div className="detail-period">{item.location}</div>
+                      <ul className="detail-list">
+                        {item.description.slice(0, 3).map((d, idx) => <li key={idx}>{d}</li>)}
+                      </ul>
+                      {item.achievements && (
+                        <>
+                          <div className="achievements-label">Key Achievements</div>
+                          <div className="achievements-grid">
+                            {item.achievements.map((a, idx) => (
+                              <div className="achievement-item" key={idx}>
+                                <span className="achievement-icon">{a.icon}</span>
+                                <div>
+                                  <div className="achievement-metric">{a.metric}</div>
+                                  <div className="achievement-result">{a.result}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            // Desktop: Side panel + cards
+            <div className="split-grid">
+              <div className="detail-panel" 
+                onMouseEnter={() => hovered && setHovered(hovered)}>
+                {hovered && hovered.company && !hovered.challenge ? (
+                  <>
+                    <div className="detail-badge">{hovered.type}</div>
+                    <div className="detail-title">{hovered.title}</div>
+                    <div className="detail-company">{hovered.company}</div>
+                    <div className="detail-period">{hovered.period} · {hovered.location}</div>
+                    <ul className="detail-list">
+                      {hovered.description.slice(0, 3).map((d, i) => <li key={i}>{d}</li>)}
+                    </ul>
+                    {hovered.achievements && (
+                      <>
+                        <div className="achievements-label">Key Achievements</div>
+                        <div className="achievements-grid">
+                          {hovered.achievements.map((a, i) => (
+                            <div className="achievement-item" key={i}>
+                              <span className="achievement-icon">{a.icon}</span>
+                              <div>
+                                <div className="achievement-metric">{a.metric}</div>
+                                <div className="achievement-result">{a.result}</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <div className="detail-placeholder">← Hover a role to preview details</div>
+                )}
+              </div>
+              <div className="exp-grid">
+                {filteredExperience.map((item, i) => (
+                  <div key={item.id} className={`item-card ${hovered?.id === item.id ? "active-item" : ""}`}
+                    onMouseEnter={() => setHovered(item)}
+                    style={{ animationDelay: `${i * 55}ms` }}>
+                    <div className="item-card-row">
+                      <div className="item-card-dot"></div>
+                      <div>
+                        <div className="item-card-title">{item.title}</div>
+                        <div className="item-card-sub">{item.company} · {item.period}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Projects Section */}
+          <div className="section-title" style={{ marginTop: 60, marginBottom: 24 }}>Projects</div>
+          
+          {isMobile ? (
+            // Mobile: Expandable project cards
+            <div className="mobile-cards-container">
+              {projectsData.map((item, i) => (
+                <div key={item.id} className={`mobile-exp-card project-card-item ${expandedCard === `proj-${item.id}` ? 'expanded' : ''}`}
+                  style={{ animationDelay: `${i * 55}ms` }}>
+                  <div className="mobile-card-header" onClick={() => setExpandedCard(expandedCard === `proj-${item.id}` ? null : `proj-${item.id}`)}>
+                    <div className="item-card-dot"></div>
+                    <div style={{flex: 1}}>
+                      <div className="item-card-title">{item.title}</div>
+                      <div className="item-card-sub">{item.company} · {item.period}</div>
+                      <div className="item-card-category">{item.category}</div>
+                    </div>
+                    <span className="expand-icon">{expandedCard === `proj-${item.id}` ? '▲' : '▼'}</span>
+                  </div>
+                  {expandedCard === `proj-${item.id}` && (
+                    <div className="mobile-card-content">
+                      <div className="project-section-label">Challenge</div>
+                      <p className="project-challenge">{item.challenge}</p>
+                      <div className="project-section-label">Solution</div>
+                      <ul className="detail-list">
+                        {item.solution.slice(0, 4).map((s, idx) => <li key={idx}>{s}</li>)}
+                      </ul>
+                      <div className="project-section-label">Tech Stack</div>
+                      <div className="tech-stack-tags">
+                        {item.techStack.map((tech, idx) => (
+                          <span key={idx} className="tech-tag">{tech}</span>
+                        ))}
+                      </div>
+                      <div className="achievements-label" style={{marginTop: 16}}>Impact & Results</div>
                       <div className="achievements-grid">
-                        {hovered.achievements.map((a, i) => (
-                          <div className="achievement-item" key={i}>
+                        {item.achievements.map((a, idx) => (
+                          <div className="achievement-item" key={idx}>
                             <span className="achievement-icon">{a.icon}</span>
                             <div>
                               <div className="achievement-metric">{a.metric}</div>
@@ -624,29 +951,86 @@ export default function DigitalCV() {
                           </div>
                         ))}
                       </div>
-                    </>
-                  )}
-                </>
-              ) : (
-                <div className="detail-placeholder">← Hover a role to preview details</div>
-              )}
-            </div>
-            <div className="exp-grid">
-              {filteredExperience.map((item, i) => (
-                <div key={item.id} className={`item-card ${hovered?.id === item.id ? "active-item" : ""}`}
-                  onMouseEnter={() => setHovered(item)}
-                  style={{ animationDelay: `${i * 55}ms` }}>
-                  <div className="item-card-row">
-                    <div className="item-card-dot"></div>
-                    <div>
-                      <div className="item-card-title">{item.title}</div>
-                      <div className="item-card-sub">{item.company} · {item.period}</div>
                     </div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>
-          </div>
+          ) : (
+            // Desktop: Side panel + project cards
+            <div className="split-grid">
+              <div className="detail-panel" 
+                onMouseEnter={() => hovered && setHovered(hovered)}>
+                {hovered && hovered.challenge ? (
+                  <>
+                    <div className="detail-badge">{hovered.category}</div>
+                    <div className="detail-title">{hovered.title}</div>
+                    <div className="detail-company">{hovered.company}</div>
+                    <div className="detail-period">{hovered.period}</div>
+                    
+                    <div className="project-section-label">Challenge</div>
+                    <p className="project-challenge">{hovered.challenge}</p>
+                    
+                    <div className="project-section-label">Solution</div>
+                    <ul className="detail-list">
+                      {hovered.solution.slice(0, 4).map((s, i) => <li key={i}>{s}</li>)}
+                    </ul>
+                    
+                    {hovered.techStack && (
+                      <>
+                        <div className="project-section-label">Tech Stack</div>
+                        <div className="tech-stack-tags">
+                          {hovered.techStack.map((tech, i) => (
+                            <span key={i} className="tech-tag">{tech}</span>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                    
+                    {hovered.achievements && (
+                      <>
+                        <div className="achievements-label" style={{marginTop: 16}}>Impact & Results</div>
+                        <div className="achievements-grid">
+                          {hovered.achievements.map((a, i) => (
+                            <div className="achievement-item" key={i}>
+                              <span className="achievement-icon">{a.icon}</span>
+                              <div>
+                                <div className="achievement-metric">{a.metric}</div>
+                                <div className="achievement-result">{a.result}</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <div className="detail-placeholder">← Hover a project to preview details</div>
+                )}
+              </div>
+              <div className="exp-grid">
+                {projectsData.map((item, i) => (
+                  <div key={item.id} className={`item-card project-card-item ${hovered?.id === item.id ? "active-item" : ""}`}
+                    onMouseEnter={() => setHovered(item)}
+                    style={{ animationDelay: `${i * 55}ms` }}>
+                    <div className="item-card-row">
+                      <div className="item-card-dot"></div>
+                      <div style={{flex: 1}}>
+                        <div className="item-card-title">{item.title}</div>
+                        <div className="item-card-sub">{item.company} · {item.period}</div>
+                        <div className="item-card-category">{item.category}</div>
+                        <div className="item-card-tags">
+                          {item.tags.slice(0, 3).map((tag, idx) => (
+                            <span key={idx} className="mini-tag">{tag}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       );
 
@@ -682,13 +1066,23 @@ export default function DigitalCV() {
             ))}
           </div>
           <div className="cert-section">
-            <div className="section-title" style={{ fontSize: 24, marginBottom: 18 }}>Certifications & Training</div>
+            <div className="section-title" style={{ fontSize: 24, marginBottom: 12 }}>Certifications & Training</div>
+            <p className="cert-intro">Continuous learning through formal certifications, online courses, and hands-on training programs.</p>
             <div className="cert-grid">
               {certifications.map((c, i) => (
                 <div className="cert-card" key={i} style={{ animationDelay: `${i * 70}ms` }}>
                   <span className="cert-icon">{c.icon}</span>
                   <div className="cert-title">{c.title}</div>
                   <div className="cert-org">{c.org}</div>
+                  <div className="cert-description">{c.description}</div>
+                  <div className="cert-footer">
+                    <span className="cert-status">{c.status}</span>
+                  </div>
+                  {c.progress && (
+                    <div className="cert-progress-bar">
+                      <div className="cert-progress-fill" style={{ width: `${c.progress}%` }}></div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -715,24 +1109,6 @@ export default function DigitalCV() {
                     <SkillBar key={item.name} name={item.name} level={item.level} tags={item.tags} visible={skillsVisible} />
                   ))}
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-
-      // ============ HOBBIES ============
-      case "Hobbies": return (
-        <div className="section-fade" key={pageKey}>
-          <BgDeco page="Hobbies" />
-          <div className="section-title">Interests & Hobbies</div>
-          <div className="hobbies-grid">
-            {hobbiesData.map((h, i) => (
-              <div className="hobby-card" key={h.id} style={{ animationDelay: `${i * 100}ms` }}
-                onMouseEnter={() => setHovered(h)} onMouseLeave={() => setHovered(null)}>
-                <div className={`hobby-icon-wrap ${hovered?.id === h.id ? "active" : ""}`}>{h.icon}</div>
-                <div className="hobby-title">{h.title}</div>
-                <div className={`hobby-desc ${hovered?.id === h.id ? "visible" : ""}`}>{h.description}</div>
               </div>
             ))}
           </div>
@@ -834,6 +1210,15 @@ export default function DigitalCV() {
             {/* Feedback Form */}
             <div className="feedback-column">
               <div className="column-title">Send Feedback</div>
+              {feedbackSubmitted && (
+                <div className="feedback-success-banner">
+                  <div className="success-icon">✅</div>
+                  <div>
+                    <div className="success-title">Thank you for your feedback!</div>
+                    <div className="success-message">Your message has been sent successfully. I'll get back to you soon!</div>
+                  </div>
+                </div>
+              )}
               <form className="feedback-form" onSubmit={handleFeedbackSubmit}>
                 <div className="form-group">
                   <label className="form-label">Name *</label>
@@ -860,14 +1245,22 @@ export default function DigitalCV() {
                 <div className="form-group">
                   <label className="form-label">How would you rate this portfolio? *</label>
                   <div className="rating-buttons">
-                    {[1, 2, 3, 4, 5].map(num => (
+                    {[
+                      { num: 1, label: 'Poor' },
+                      { num: 2, label: 'Fair' },
+                      { num: 3, label: 'Good' },
+                      { num: 4, label: 'Great' },
+                      { num: 5, label: 'Excellent' }
+                    ].map(({ num, label }) => (
                       <button
                         key={num}
                         type="button"
-                        className={`rating-btn ${feedbackForm.rating === num.toString() ? 'active' : ''}`}
-                        onClick={() => setFeedbackForm({...feedbackForm, rating: num.toString()})}
+                        className={`rating-btn ${feedbackForm.rating === `${num} - ${label}` ? 'active' : ''}`}
+                        onClick={() => setFeedbackForm({...feedbackForm, rating: `${num} - ${label}`})}
+                        title={`${num} star${num > 1 ? 's' : ''} - ${label}`}
                       >
                         {'⭐'.repeat(num)}
+                        <span className="rating-label">{label}</span>
                       </button>
                     ))}
                   </div>
@@ -959,7 +1352,10 @@ export default function DigitalCV() {
     @media(max-width:600px){.home-sub{font-size:14px;line-height:1.7}}
     
     .availability-toggle{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;flex-wrap:wrap}
-    .availability-status{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:50px;background:var(--card);border:1px solid var(--nav-border);transition:all .3s}
+    @media(max-width:600px){.availability-toggle{gap:12px}}
+    .availability-status{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:50px;background:var(--card);border:1px solid var(--nav-border);transition:all .3s;box-shadow:var(--shadow)}
+    @media(max-width:600px){.availability-status{padding:8px 16px}}
+    .availability-status:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
     .availability-status.available{border-color:#22c55e50}
     .availability-status.unavailable{border-color:#ef444450}
     .availability-dot{width:8px;height:8px;border-radius:50%;animation:pulseDot 2s ease infinite}
@@ -968,18 +1364,6 @@ export default function DigitalCV() {
     .availability-text{font-size:13px;font-weight:600}
     .availability-btn{background:var(--tag-bg);border:none;padding:8px 16px;border-radius:50px;font-size:12px;cursor:pointer;transition:all .3s;color:var(--accent)}
     .availability-btn:hover{background:var(--accent);color:var(--pill-c);transform:scale(1.05)}
-    
-    .travel-banner{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(102,126,234,0.1) 0%,rgba(118,75,162,0.1) 100%);border:1px solid var(--glow);border-radius:16px;padding:20px 24px;margin-top:24px;animation:fadeUp .6s .3s ease both;transition:all .3s}
-    @media(max-width:600px){.travel-banner{padding:16px 18px;gap:12px;flex-direction:column;text-align:center}}
-    .travel-banner:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-    .travel-banner-icon{font-size:32px;flex-shrink:0;animation:float 3s ease-in-out infinite}
-    @media(max-width:600px){.travel-banner-icon{font-size:28px}}
-    .travel-banner-content{flex:1}
-    .travel-banner-title{font-size:14px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-    @media(max-width:600px){.travel-banner-title{font-size:12px}}
-    .travel-banner-text{font-size:14px;color:var(--muted);line-height:1.6}
-    @media(max-width:600px){.travel-banner-text{font-size:13px}}
-    .travel-banner-text strong{color:var(--accent);font-weight:600}
     
     .home-content-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:64px;animation:fadeUp .6s .4s ease both;width:100%}
     @media(max-width:800px){.home-content-grid{grid-template-columns:1fr;gap:24px}}
@@ -1143,6 +1527,33 @@ export default function DigitalCV() {
     .item-card-title{font-size:13.5px;font-weight:600;transition:color .3s}
     .item-card:hover .item-card-title,.item-card.active-item .item-card-title{background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .item-card-sub{font-size:11.5px;color:var(--muted2);margin-top:3px}
+    .item-card-category{font-size:10px;color:var(--accent);font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px}
+    .item-card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+    .mini-tag{font-size:9px;background:var(--tag-bg);color:var(--muted);padding:3px 8px;border-radius:8px;font-weight:500;border:1px solid var(--nav-border)}
+    .project-card-item{border-left:3px solid var(--glow)}
+    .project-card-item .item-card-dot{background:var(--glow)}
+    .project-section-label{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-top:16px;margin-bottom:8px;font-weight:700}
+    .project-challenge{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:16px;padding:12px;background:var(--hover-card);border-radius:12px;border-left:3px solid var(--glow)}
+    .tech-stack-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .tech-tag{font-size:10px;background:var(--accent-gradient);color:#fff;padding:5px 10px;border-radius:12px;font-weight:600;box-shadow:0 2px 6px rgba(102,126,234,0.3)}
+    
+    /* Mobile Expandable Cards */
+    .mobile-cards-container{display:flex;flex-direction:column;gap:12px}
+    .mobile-exp-card{background:var(--card);box-shadow:var(--shadow);border-radius:18px;border:2px solid transparent;transition:all .3s cubic-bezier(.4,0,.2,1);animation:fadeUp .5s both;overflow:hidden}
+    .mobile-exp-card.project-card-item{border-left:3px solid var(--glow)}
+    .mobile-exp-card:hover,.mobile-exp-card.expanded{border-color:var(--glow);box-shadow:var(--shadow-hover)}
+    .mobile-card-header{display:flex;align-items:center;gap:14px;padding:17px 20px;cursor:pointer;position:relative;user-select:none;-webkit-tap-highlight-color:transparent}
+    .mobile-card-header::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--accent-gradient);transition:width .3s;z-index:0}
+    .mobile-card-header:active::before{width:4px}
+    .mobile-card-header>*{position:relative;z-index:1}
+    .expand-icon{font-size:18px;color:var(--accent);flex-shrink:0;transition:transform .3s}
+    .mobile-exp-card.expanded .expand-icon{transform:rotate(180deg)}
+    .mobile-card-content{padding:0 20px 20px 54px;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s ease,padding .3s ease}
+    .mobile-exp-card.expanded .mobile-card-content{max-height:2000px;opacity:1;padding:0 20px 20px 54px}
+    .mobile-card-content .detail-badge{margin-bottom:10px}
+    .mobile-card-content .detail-list{margin:12px 0}
+    @media(min-width:901px){.mobile-cards-container{display:none}}
+    @media(max-width:900px){.split-grid{display:none !important}}
     
     .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:48px}
     @media(max-width:700px){.edu-grid{grid-template-columns:1fr;gap:16px;margin-bottom:32px}}
@@ -1170,15 +1581,24 @@ export default function DigitalCV() {
     .edu-list li::before{content:"· ";opacity:.4}
     .edu-achievement::before{content:"" !important}
     .cert-section{margin-top:8px}
-    .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-    @media(max-width:600px){.cert-grid{grid-template-columns:1fr 1fr;gap:10px}}
-    .cert-card{background:var(--card);box-shadow:var(--shadow);border-radius:18px;padding:20px 16px;text-align:center;transition:all .4s cubic-bezier(.4,0,.2,1);animation:fadeUp .5s both;border:1px solid transparent;cursor:pointer}
-    @media(max-width:600px){.cert-card{padding:16px 12px;border-radius:16px}}
-    .cert-card:hover{transform:translateY(-6px) scale(1.05);box-shadow:var(--shadow-hover);border-color:var(--glow)}
-    .cert-icon{font-size:28px;display:block;margin-bottom:10px;transition:transform .4s}
+    .cert-intro{font-size:13.5px;color:var(--muted);margin-bottom:20px;line-height:1.6;text-align:center}
+    .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media(max-width:900px){.cert-grid{grid-template-columns:repeat(3,1fr);gap:14px}}
+    @media(max-width:700px){.cert-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+    @media(max-width:500px){.cert-grid{grid-template-columns:1fr;gap:12px}}
+    .cert-card{background:var(--card);box-shadow:var(--shadow);border-radius:20px;padding:24px 18px;text-align:center;transition:all .4s cubic-bezier(.4,0,.2,1);animation:fadeUp .5s both;border:1px solid transparent;cursor:pointer;display:flex;flex-direction:column;min-height:240px}
+    @media(max-width:600px){.cert-card{padding:20px 16px;border-radius:18px;min-height:220px}}
+    .cert-card:hover{transform:translateY(-6px) scale(1.03);box-shadow:var(--shadow-hover);border-color:var(--glow)}
+    .cert-icon{font-size:32px;display:block;margin-bottom:12px;transition:transform .4s}
     .cert-card:hover .cert-icon{transform:scale(1.2) rotate(10deg)}
-    .cert-title{font-size:12.5px;font-weight:600;line-height:1.4}
-    .cert-org{font-size:11px;color:var(--muted2);margin-top:4px}
+    .cert-title{font-size:13px;font-weight:700;line-height:1.4;margin-bottom:6px;color:var(--accent)}
+    .cert-org{font-size:11px;color:var(--muted2);margin-bottom:10px;line-height:1.3}
+    .cert-description{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:12px;flex:1}
+    .cert-footer{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:auto;padding-top:10px;border-top:1px solid var(--nav-border)}
+    .cert-status{font-size:10px;font-weight:600;padding:4px 10px;border-radius:12px;background:var(--tag-bg);color:var(--accent)}
+    .cert-progress-bar{width:100%;height:4px;background:var(--tag-bg);border-radius:4px;overflow:hidden;margin-top:10px}
+    .cert-progress-fill{height:100%;background:var(--accent-gradient);transition:width .6s cubic-bezier(.4,0,.2,1);border-radius:4px}
+    @media(max-width:600px){.cert-title{font-size:12px}.cert-org,.cert-description{font-size:10px}}
     
     .skills-master{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%}
     @media(max-width:900px){.skills-master{grid-template-columns:repeat(2,1fr)}}
@@ -1204,16 +1624,20 @@ export default function DigitalCV() {
     .skill-tag{font-size:10px;background:var(--tag-bg);color:var(--muted);padding:4px 9px;border-radius:50px;transition:all .3s}
     .skill-tag:hover{background:var(--accent);color:var(--pill-c);transform:scale(1.08)}
     
+    .hobbies-intro{font-size:14.5px;color:var(--muted);margin-bottom:28px;line-height:1.8;text-align:center;animation:fadeUp .6s .2s ease both}
     .hobbies-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;width:100%}
     @media(max-width:700px){.hobbies-grid{grid-template-columns:repeat(2,1fr);gap:16px}}
     @media(max-width:500px){.hobbies-grid{grid-template-columns:1fr;gap:14px}}
     .hobby-card{grid-column:span 2;background:var(--card);box-shadow:var(--shadow);border-radius:24px;padding:30px;cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);animation:fadeUp .5s both;border:1px solid transparent;position:relative;overflow:hidden;width:100%}
+    .hobby-card.featured{border:2px solid var(--glow);background:linear-gradient(135deg,var(--card) 0%,rgba(102,126,234,0.05) 100%)}
     @media(max-width:700px){.hobby-card{grid-column:span 1;padding:24px;border-radius:20px}}
     @media(max-width:600px){.hobby-card{padding:20px}}
     @media(max-width:500px){.hobby-card{grid-column:auto;padding:24px}}
     @media(max-width:400px){.hobby-card{padding:20px;border-radius:18px}}
     .hobby-card::before{content:'';position:absolute;inset:0;background:var(--accent-gradient);opacity:0;transition:opacity .4s;z-index:0}
     .hobby-card:hover::before{opacity:.08}
+    .hobby-card.featured::before{opacity:.05}
+    .hobby-card.featured:hover::before{opacity:.12}
     .hobby-card>*{position:relative;z-index:1}
     .hobby-card:hover{transform:translateY(-8px) scale(1.03);box-shadow:var(--shadow-hover);border-color:var(--glow)}
     .hobby-icon-wrap{width:56px;height:56px;border-radius:16px;background:var(--tag-bg);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
@@ -1223,8 +1647,15 @@ export default function DigitalCV() {
     .hobby-title{font-size:16px;font-weight:600;margin-bottom:8px;transition:all .3s;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto}
     @media(max-width:600px){.hobby-title{font-size:15px}}
     .hobby-card:hover .hobby-title{background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hobby-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+    .hobby-badge{font-size:10px;background:var(--accent-gradient);color:#fff;padding:4px 10px;border-radius:12px;font-weight:600;white-space:nowrap;box-shadow:0 2px 6px rgba(102,126,234,0.3);animation:fadeUp .4s both}
+    .hobby-badge:nth-child(1){animation-delay:.1s}
+    .hobby-badge:nth-child(2){animation-delay:.2s}
+    .hobby-badge:nth-child(3){animation-delay:.3s}
+    @media(max-width:600px){.hobby-badge{font-size:9px;padding:3px 8px}}
     .hobby-desc{font-size:13.5px;color:var(--muted);max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0;line-height:1.65}
-    .hobby-desc.visible{max-height:150px;opacity:1}
+    .hobby-desc.visible{max-height:200px;opacity:1}
+    @media(max-width:600px){.hobby-desc.visible{max-height:250px}}
     
     .contact-intro{font-size:14.5px;color:var(--muted);margin-bottom:30px;line-height:1.8;animation:fadeUp .6s .2s ease both;text-align:center}
     .contact-feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;animation:fadeUp .6s .3s ease both}
@@ -1266,6 +1697,12 @@ export default function DigitalCV() {
     @media(max-width:600px){.download-resume-btn{padding:16px 20px}.download-icon{font-size:24px}.download-label{font-size:14px}.download-sublabel{font-size:11px}}
     
     /* Feedback Form Styles */
+    .feedback-success-banner{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(34,197,94,0.1) 0%,rgba(34,197,94,0.05) 100%);border:1px solid rgba(34,197,94,0.3);border-radius:16px;padding:20px;margin-bottom:20px;animation:slideDown .4s ease both}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    .success-icon{font-size:32px;flex-shrink:0}
+    .success-title{font-size:16px;font-weight:700;color:#22c55e;margin-bottom:4px}
+    .success-message{font-size:14px;color:var(--muted);line-height:1.5}
+    @media(max-width:600px){.feedback-success-banner{padding:16px;gap:12px}.success-icon{font-size:28px}.success-title{font-size:14px}.success-message{font-size:13px}}
     .feedback-form{background:var(--card);box-shadow:var(--shadow);border-radius:24px;padding:28px;border:1px solid var(--nav-border);transition:all .4s}
     .feedback-form:hover{box-shadow:var(--shadow-hover);border-color:var(--glow)}
     .form-group{margin-bottom:20px}
@@ -1273,10 +1710,16 @@ export default function DigitalCV() {
     .form-input,.form-textarea{width:100%;background:var(--hover-card);border:1px solid var(--nav-border);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--accent);font-family:'DM Sans',sans-serif;transition:all .3s;resize:vertical}
     .form-input:focus,.form-textarea:focus{outline:none;border-color:var(--glow);box-shadow:0 0 0 3px rgba(102,126,234,0.1)}
     .form-input::placeholder,.form-textarea::placeholder{color:var(--muted2)}
-    .rating-buttons{display:flex;gap:8px;flex-wrap:wrap}
-    .rating-btn{background:var(--tag-bg);border:1px solid var(--nav-border);padding:10px 16px;border-radius:12px;font-size:16px;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+    .rating-buttons{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between}
+    @media(max-width:600px){.rating-buttons{gap:6px}}
+    .rating-btn{background:var(--tag-bg);border:1px solid var(--nav-border);padding:10px 12px;border-radius:12px;font-size:16px;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif;display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;min-width:70px}
+    @media(max-width:600px){.rating-btn{padding:8px 8px;font-size:14px;min-width:60px}}
+    .rating-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+    @media(max-width:600px){.rating-label{font-size:9px}}
     .rating-btn:hover{background:var(--hover-card);transform:scale(1.05)}
+    .rating-btn:hover .rating-label{color:var(--accent)}
     .rating-btn.active{background:var(--accent-gradient);color:#fff;border-color:transparent;transform:scale(1.05);box-shadow:0 4px 12px var(--glow)}
+    .rating-btn.active .rating-label{color:#fff}
     .feedback-submit-btn{width:100%;background:var(--accent-gradient);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif;box-shadow:0 4px 12px var(--glow)}
     .feedback-submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 20px var(--glow)}
     .feedback-submit-btn:disabled{opacity:0.6;cursor:not-allowed}
